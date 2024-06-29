@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  @font-face {
+    font-family: Dana;
+    src: url("./assets/fonts/Dana/DanaFaNum-Regular.ttf");
+  }
+  @font-face {
+    font-family: "Dana Medium";
+    src: url("./assets/fonts/Dana/DanaFaNum-Medium.ttf");
+  }
+  @font-face {
+    font-family: "Dana Demi";
+    src: url("./assets/fonts/Dana/DanaFaNum-DemiBold.woff2");
+  }
+
+  @font-face {
+    font-family: Moraba;
+    src: url("./assets/fonts/Moraba/Morabba.ttf");
+  }
+  @font-face {
+    font-family: "Moraba Medium";
+    src: url("./assets/fonts/Moraba/Morabba-Medium.ttf");
+  }
+  @font-face {
+    font-family: "MorabaBold";
+    src: url("./assets/fonts/Moraba/Morabba-Bold.ttf");
+  }
+}
+
+@layer components {
+  .header-nav_links a.active {
+    @apply bg-transparent text-slate-900 !border-b-primary-1;
+  }
+  .active {
+    @apply bg-primary-1 text-white
+  }
+  .iconed-links a.active {
+    @apply bg-transparent text-slate-900
+  }
+  .main-page.active {
+    @apply bg-transparent text-slate-900
+  }
+  .mobileMenuActive {
+    @apply bg-primary-1 text-white;
+  }
+  .navigation-bar *.active {
+    transform: translateY(-5px);
+    font-weight: 700;
+  }
+  .discount__price{
+    text-decoration: line-through;
+  }
+  @keyframes load {
+    from {
+      right: -256px;
+    }
+    to {
+      right: 0;
+    }
+  }
+  #mobileMenu {
+    animation-name: load;
+    animation-duration: 1000ms;
+  }
+  .navigation-bar div.active {
+    @apply bg-primary-1 text-white;
+  }
+  .landing-section {
+    background-image: linear-gradient(
+        to right,
+        rgb(0, 0, 0, 0.35),
+        rgb(0, 0, 0, 0.35)
+      ),
+      url("./assets/images/landing-image.png") !important;
+  }
+  
+  @media (min-width: 1024px) {
+    .landing-section {
+      background-image: linear-gradient(to right, transparent, transparent),
+        url("./assets/images/landing-image.png") !important ;
+    }
+    #mobileMenu {
+      display: none !important;
+    }
+  }
+}
