@@ -1,6 +1,7 @@
 import { IoMdSwap } from "react-icons/io";
 import { BsHeart } from "react-icons/bs";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 function ProductCard({ data }) {
   const {title , category , price , imageUrl , discount } = data;
@@ -67,5 +68,4 @@ function ProductCard({ data }) {
     </div>
   );
 }
-
 export default ProductCard;

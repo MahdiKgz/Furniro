@@ -38,24 +38,28 @@
     @apply bg-transparent text-slate-900 !border-b-primary-1;
   }
   .active {
-    @apply bg-primary-1 text-white
+    @apply bg-primary-1 text-white;
   }
   .iconed-links a.active {
-    @apply bg-transparent text-slate-900
+    @apply bg-transparent text-slate-900;
   }
   .main-page.active {
-    @apply bg-transparent text-slate-900
+    @apply bg-transparent text-slate-900;
   }
   .mobileMenuActive {
     @apply bg-primary-1 text-white;
+  }
+  .quick_access a.active {
+    @apply !text-primary-1 bg-transparent;
   }
   .navigation-bar *.active {
     transform: translateY(-5px);
     font-weight: 700;
   }
-  .discount__price{
+  .discount__price {
     text-decoration: line-through;
   }
+  
   @keyframes load {
     from {
       right: -256px;
@@ -79,7 +83,7 @@
       ),
       url("./assets/images/landing-image.png") !important;
   }
-  
+
   @media (min-width: 1024px) {
     .landing-section {
       background-image: linear-gradient(to right, transparent, transparent),

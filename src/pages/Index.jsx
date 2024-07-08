@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
 import { RotatingLines } from "react-loader-spinner";
 
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
@@ -13,10 +11,6 @@ import { useProducts } from "../context/ProductContext";
 
 function Index() {
   const products = useProducts();
-
-  useEffect(() => {
-    AOS.init();
-  }, []);
 
   return (
     <>
@@ -128,7 +122,7 @@ function Index() {
         <div
           data-aos="fade-up"
           data-aos-duration="3000"
-          className="products__content container flex items-center justify-center flex-wrap gap-x-4 gap-y-6 lg:gap-x-16 lg:gap-y-8 mt-8 sm:mt-12 lg:mt-6 transition-all duration-200"
+          className="products__content container flex items-center justify-center flex-wrap gap-x-4 gap-y-6 lg:gap-x-8 lg:gap-y-10 mt-8 sm:mt-12 lg:mt-6 transition-all duration-200"
         >
           {!products.length ? (
             <RotatingLines strokeColor="#B88E2F" strokeWidth="1.5" />

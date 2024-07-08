@@ -8,6 +8,9 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { HiBars3BottomLeft } from "react-icons/hi2";
 import { HiXMark } from "react-icons/hi2";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import { handleMobileMenu, toggleActiveLinks , validateEmail } from "../helpers/funcs/shared";
 
 import icon from "../assets/icons/mainLogo.png";
@@ -19,6 +22,7 @@ function InedexLayout({ children }) {
 
   useEffect(() => {
     window.addEventListener('load' , () => navigate("/"))
+    AOS.init()
     toggleActiveLinks();
     handleMobileMenu();
   }, []);
@@ -47,7 +51,7 @@ function InedexLayout({ children }) {
           </div>
           <div className="hidden lg:block lg:w-[420px]">
             <ul className="header-nav_links flex items-center justify-between child:font-DanaMedium child:py-4 child:border-b-2 child:border-b-transparent child:transition-all child:duration-200">
-              <Link title="خانه" className="header_link active" to="/" replace>
+              <Link title="خانه" className="header_link" to="/" replace>
                 خانه
               </Link>
               <Link title="فروشگاه" className="header_link" to="/shop">
@@ -195,7 +199,7 @@ function InedexLayout({ children }) {
               نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
             </span>
           </div>
-          <div className="flex items-start w-full sm:w-auto justify-between sm:justify-normal sm:gap-x-36 md:gap-x-30">
+          <div className="quick_access flex items-start w-full sm:w-auto justify-between sm:justify-normal sm:gap-x-36 md:gap-x-30">
             <div className="flex flex-col items-start gap-y-6 lg:gap-y-12">
               <h1 className="font-MorabaMedium text-lg text-gray-400">
                 پیوند ها
@@ -227,7 +231,7 @@ function InedexLayout({ children }) {
                 </li>
               </ul>
             </div>
-            <div className="flex flex-col items-start gap-y-6 lg:gap-y-12">
+            <div className="quick_access flex flex-col items-start gap-y-6 lg:gap-y-12">
               <h1 className="font-MorabaMedium text-lg text-gray-400">
                 صفحات کمکی
               </h1>
