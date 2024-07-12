@@ -119,7 +119,7 @@ function Shop() {
                 value={itemsPerPage}
                 onChange={(e) => {setItemsPerPage(e.target.value);setCurrentPage(1)}}
                 className="filteration_amount w-20 py-3 px-[18px] lg:w-[85px] lg:py-3 lg:px-5 text-slate-900 placeholder:text-gray-2 rounded-xl"
-                disabled={!!category}
+                disabled={!!category ? true : false}
               />
             </div>
             <div className="flex flex-col lg:flex-row items-start lg:items-center font-DanaDemi lg:gap-x-5">

@@ -34,24 +34,6 @@
 }
 
 @layer components {
-  .header-nav_links a.active {
-    @apply bg-transparent text-slate-900 !border-b-primary-1;
-  }
-  .active {
-    @apply bg-primary-1 text-white;
-  }
-  .iconed-links a.active {
-    @apply bg-transparent text-slate-900;
-  }
-  .main-page.active {
-    @apply bg-transparent text-slate-900;
-  }
-  .mobileMenuActive {
-    @apply bg-primary-1 text-white;
-  }
-  .quick_access a.active {
-    @apply !text-primary-1 bg-transparent;
-  }
   .navigation-bar *.active {
     transform: translateY(-5px);
     font-weight: 700;

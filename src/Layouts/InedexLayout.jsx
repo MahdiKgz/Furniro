@@ -11,30 +11,30 @@ import { HiXMark } from "react-icons/hi2";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import { handleMobileMenu, toggleActiveLinks , validateEmail } from "../helpers/funcs/shared";
+import { handleMobileMenu, validateEmail } from "../helpers/funcs/shared";
 
 import icon from "../assets/icons/mainLogo.png";
 import toast, { Toaster } from "react-hot-toast";
+import { Badge } from "@mui/material";
+import { useCart } from "../context/CartContext";
 
 function InedexLayout({ children }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [state , dispatch] = useCart();
 
   useEffect(() => {
-    window.addEventListener('load' , () => navigate("/"))
-    AOS.init()
-    toggleActiveLinks();
+    window.addEventListener("load", () => navigate("/"));
+    AOS.init();
     handleMobileMenu();
   }, []);
 
-
   const submitNewLetterHandler = async () => {
-    if(email && validateEmail(email)){
-      toast.success("ایمیل شما ثبت شد")
-    }
-    else{
-      toast.error("لطفا ایمیل معتبر وارد کنید")
-      setEmail(email => setEmail(""))
+    if (email && validateEmail(email)) {
+      toast.success("ایمیل شما ثبت شد");
+    } else {
+      toast.error("لطفا ایمیل معتبر وارد کنید");
+      setEmail((email) => setEmail(""));
     }
   };
 
@@ -74,7 +74,9 @@ function InedexLayout({ children }) {
             </button>
             <BsHeart size={23} />
             <Link title="سبد خرید" className="header_link" to="/checkout">
-              <MdOutlineShoppingCart size={23} />
+              <Badge badgeContent={state.itemsCounter} color="primary">
+                <MdOutlineShoppingCart size={23} />
+              </Badge>
             </Link>
           </div>
           <div className="mobile-menu p-3.5 rounded-full bg-gray-100/50 lg:hidden">
@@ -180,7 +182,9 @@ function InedexLayout({ children }) {
             to="/checkout"
             className="header_link flex flex-col justify-center items-center px-5 py-3.5  rounded-full"
           >
-            <MdOutlineShoppingCart size={23} />
+            <Badge badgeContent={state.itemsCounter} color="primary">
+                <MdOutlineShoppingCart size={23} />
+              </Badge>
             <Link title="سبد خرید" to="/checkout" className="text-xs">
               سبدخرید
             </Link>
@@ -259,7 +263,11 @@ function InedexLayout({ children }) {
             <div className="w-full sm:w-auto flex items-center gap-x-2 lg:gap-x-3">
               <input
                 type="email"
-                className={`outline-none w-3/4 sm:w-auto py-2.5 px-3 border-b-2 ${validateEmail(email) || email === "" ? "border-b-black" : "border-b-red-500"} text-sm placeholder:text-sm placeholder:text-gray-500`}
+                className={`outline-none w-3/4 sm:w-auto py-2.5 px-3 border-b-2 ${
+                  validateEmail(email) || email === ""
+                    ? "border-b-black"
+                    : "border-b-red-500"
+                } text-sm placeholder:text-sm placeholder:text-gray-500`}
                 placeholder="ایمیل خودتو وارد کن"
                 onChange={(e) => setEmail(e.target.value)}
               />

@@ -2,9 +2,16 @@ import { IoMdSwap } from "react-icons/io";
 import { BsHeart } from "react-icons/bs";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 function ProductCard({ data }) {
-  const {title , category , price , imageUrl , discount } = data;
+  const {id ,title , category , price , imageUrl , discount } = data;
+
+  const [state , dispatch] = useCart();
+
+  const addItemHandler = () => {
+    dispatch({type : "ADD_ITEM" , payload : data})
+  }
   
   return (
     <div className="product-card relative w-[160px] sm:w-[240px] lg:w-[285px] overflow-hidden group">
@@ -50,7 +57,7 @@ function ProductCard({ data }) {
       </div>
       <div className="absolute opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:cursor-pointer flex justify-center items-center inset-0 bg-black/40 rounded-xl z-[2] lg:px-16 transition-all duration-200 delay-100">
         <div className="flex flex-col lg:gap-y-1">
-          <button className="font-DanaMedium px-6 py-2 lg:px-8 lg:py-2.5 lg:text-base bg-white text-primary-1 rounded-xl">
+          <button onClick={addItemHandler} className="font-DanaMedium px-6 py-2 lg:px-8 lg:py-2.5 lg:text-base bg-white text-primary-1 rounded-xl">
             افزودن به سبد
           </button>
           <div className="flex items-center justify-center gap-x-4 lg:gap-x-12 text-white mt-3.5 lg:mt-4.5 w-full sm:w-[200px] lg:w-[245px] overflow-hidden">
@@ -58,10 +65,10 @@ function ProductCard({ data }) {
               <IoMdSwap size={18} />
               <span>مقایسه</span>
             </button>
-            <button  onClick={() => toast.success("added")} className="flex items-center gap-x-1 lg:gap-x-1.5">
+            <Link to={`/shop/${id}`} className="flex items-center gap-x-1 lg:gap-x-1.5">
               <BsHeart size={18} />
-              <span>لایک</span>
-            </button>
+              <span>مشاهده</span>
+            </Link>
           </div>
         </div>
       </div>

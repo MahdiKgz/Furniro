@@ -1,16 +1,3 @@
-const toggleActiveLinks = () => {
-  const headerLinks = document.querySelectorAll(".header_link");
-  if (headerLinks.length) {
-    headerLinks.forEach((headerLink) => {
-      headerLink.addEventListener("click", () => {
-        headerLinks.forEach((otherLinks) => {
-          otherLinks.classList.remove("active");
-        });
-        headerLink.classList.add("active");
-      });
-    });
-  }
-};
 
 const handleMobileMenu = () => {
   const menuTogglerButton = document.querySelector(".mobile-menu__toggler");
@@ -48,18 +35,35 @@ const paginateItems = async (array, itemsPerPage = 8, currentPage = 1) => {
 };
 
 const filterByPrice = (array) => {
-    return false
-}
+  return false;
+};
 
 const filterByDiscount = (array) => {
-  const discountedProducts = array.filter(item => item.discount.isAvailable)
-  return discountedProducts
-}
+  const discountedProducts = array.filter((item) => item.discount.isAvailable);
+  return discountedProducts;
+};
 
 const filterByNewest = (array) => {
-  const newestProducts = array.filter(item => !item.discount.isAvailable)
-  return newestProducts
-}
+  const newestProducts = array.filter((item) => !item.discount.isAvailable);
+  return newestProducts;
+};
+
+const sumProducts = (products) => {
+  // const itemsCounter = products.reduce((acc, cur) => {
+  //   acc + cur.quantity;
+  // }, 0);
+  const itemsCounter = products.length
+  const total = products.reduce((acc, cur) => acc + cur.price * cur.quantity , 0).toFixed(2);
+  return {itemsCounter , total}
+};
 
 
-export { toggleActiveLinks, handleMobileMenu, validateEmail, paginateItems , filterByPrice , filterByDiscount , filterByNewest };
+export {
+  handleMobileMenu,
+  validateEmail,
+  paginateItems,
+  filterByPrice,
+  filterByDiscount,
+  filterByNewest,
+  sumProducts
+};

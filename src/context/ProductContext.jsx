@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import api from "../helpers/funcs/config";
 import toast from "react-hot-toast";
 
-const productContext = createContext();
+const ProductContext = createContext();
 
 function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
@@ -19,16 +19,22 @@ function ProductProvider({ children }) {
     fetchProducts();
   },[]);
   return (
-    <productContext.Provider value={products}>
+    <ProductContext.Provider value={products}>
       {children}
-    </productContext.Provider>
+    </ProductContext.Provider>
   );
 }
 
 const useProducts = () => {
-  return useContext(productContext);
+  return useContext(ProductContext);
 };
+
+const useProductDetail = id => {
+  const allProducts = useContext(ProductContext)
+  const result = allProducts.find((product) => product.id === id)
+  return result
+}
 
 export default ProductProvider;
 
-export { useProducts };
+export { useProducts , useProductDetail };
