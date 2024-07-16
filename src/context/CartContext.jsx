@@ -14,8 +14,9 @@ const reducer = (state, action) => {
     case "ADD_ITEM":
       if (!state.selectedItems.find((item) => item.id === action.payload.id)) {
         state.selectedItems.push({ ...action.payload, quantity: 1 });
+        toast.success("محصول اضافه شد")
     }
-    toast.success("محصول اضافه شد")
+    else toast.error("محصول قبلا اضافه شده است")
       return {
           ...state,
           checkOut: false,

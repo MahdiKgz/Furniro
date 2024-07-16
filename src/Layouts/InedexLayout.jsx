@@ -41,7 +41,7 @@ function InedexLayout({ children }) {
   return (
     <>
       <Toaster />
-      <header className="bg-white flex justify-center items-center w-full md:h-25 py-6 px-4 sm:py-6 sm:px-3.5 md:py-6 md:px-4">
+      <header className="bg-white flex justify-center items-center w-full md:h-25 py-6 px-4 sm:py-6 sm:px-3.5 md:py-6 md:px-4 border-b-2 border-b-[#D9D9D9]">
         <div className="container flex items-center justify-between">
           <div className="flex items-center md:gap-x-2">
             <img className="header__main-logo" alt="main logo" src={icon} />
@@ -193,7 +193,7 @@ function InedexLayout({ children }) {
       </header>
       <main>{children}</main>
       <footer className="bg-white flex justify-center items-center w-full h-auto pt-6 pb-16 px-4 sm:pt-6 sm:pb-20 sm:px-3.5 md:py-16 md:px-4">
-        <div className="container w-full flex flex-wrap gap-y-10 items-start justify-between border-b-2 border-b-gray-300 lg:p-16 pb-8 sm:pb-10 md:pb-16">
+        <div className="container w-full flex flex-wrap gap-y-10 items-start justify-between border-t-2 border-t-gray-300 lg:p-16 pb-8 sm:pb-10 md:pb-16">
           <div className="flex flex-col w-full lg:w-auto gap-y-3 md:gap-y-5 lg:gap-y-12">
             <h1 className="font-MorabaMedium text-2xl">فرنیرو</h1>
             <span className="text-gray-400 text-sm text-justify lg:max-w-[300px] indent-2">

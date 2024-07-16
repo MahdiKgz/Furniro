@@ -11,6 +11,8 @@ import { useProducts } from "../context/ProductContext";
 import ProductCard from "../components/ProductCard";
 import { filterByDiscount, filterByNewest, paginateItems } from "../helpers/funcs/shared";
 import { Pagination } from "@mui/material";
+import PageHeader from "../components/PageHeader";
+import ShopOptions from "../components/ShopOptions";
 
 function Shop() {
   const products = useProducts();
@@ -59,26 +61,7 @@ function Shop() {
 
   return (
     <>
-      <div className="bg-shop bg-cover bg-no-repeat w-full h-[220px] lg:h-[356px] flex flex-col items-center justify-center gap-y-6 lg:gap-y-5">
-        <h1
-          data-aos="fade-right"
-          data-aos-duration="2000"
-          className="font-MorabaMedium text-4xl lg:text-5xl"
-        >
-          فروشگاه
-        </h1>
-        <div
-          data-aos="fade-left"
-          data-aos-duration="2000"
-          className="flex items-center gap-x-3.5 lg:gap-x-5"
-        >
-          <Link to="/" replace className="font-DanaMedium text-base">
-            خانه
-          </Link>
-          <BiChevronLeft size={21} />
-          <span className="text-base">فروشگاه</span>
-        </div>
-      </div>
+      <PageHeader title="فروشگاه" />
       <div className="filteration-section bg-primary-4 lg:h-20">
         <div className="container w-full h-full flex items-center flex-col lg:flex-row flex-wrap lg:flex-nowrap justify-center lg:justify-between gap-y-8 py-6 lg:py-2.5">
           <div className="filteration__right flex items-center">
@@ -162,6 +145,7 @@ function Shop() {
           <Pagination count={pagintaionCount} hideNextButton hidePrevButton defaultPage={1} onChange={changePageHandler} size="large" variant="outlined" />
         </div>
       </div>
+      <ShopOptions />
     </>
   );
 }

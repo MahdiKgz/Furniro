@@ -1,5 +1,5 @@
 import { IoMdSwap } from "react-icons/io";
-import { BsHeart } from "react-icons/bs";
+import { MdRemoveRedEye } from "react-icons/md";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
@@ -18,7 +18,7 @@ function ProductCard({ data }) {
       <div className="product-card__top relative rounded-xl">
         <img
           className="product-card__image rounded-t-xl"
-          src={imageUrl}
+          src={`.${imageUrl}`}
           alt="cover"
         />
         <div
@@ -66,7 +66,7 @@ function ProductCard({ data }) {
               <span>مقایسه</span>
             </button>
             <Link to={`/shop/${id}`} className="flex items-center gap-x-1 lg:gap-x-1.5">
-              <BsHeart size={18} />
+              <MdRemoveRedEye size={18} />
               <span>مشاهده</span>
             </Link>
           </div>

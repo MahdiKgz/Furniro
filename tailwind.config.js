@@ -24,7 +24,8 @@ export default {
           1: "#B88E2F",
           2: "#FFF3E3",
           3: "#FCF8F3",
-          4 : "#F9F1E7"
+          4 : "#F9F1E7",
+          5 : "#FAF3EA"
         },
         gray: {
           1: "#F4F5F7",
@@ -39,9 +40,9 @@ export default {
         50: "12.5rem",
       },
       backgroundImage: {
-        landing: "url('./src/assets/images/landing-image.png')",
-        mbLanding: "url('./src/assets/images/res.png')",
-        shop : "url('./src/assets/images/shop/shop.png')"
+        landing: "url('/src/assets/images/landing-image.png')",
+        mbLanding: "url('/src/assets/images/res.png')",
+        shop : "url('/src/assets/images/shop/shop.png')"
       },
     },
   },

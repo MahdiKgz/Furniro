@@ -41,7 +41,18 @@
   .discount__price {
     text-decoration: line-through;
   }
-  
+  .activeButton {
+    @apply !bg-primary-1 text-white text-center
+  }
+  .sizeButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .MuiButtonBase-root.MuiTab-textColorPrimary{
+    font-size: 20px !important;
+  }
   @keyframes load {
     from {
       right: -256px;
