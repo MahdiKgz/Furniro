@@ -29,7 +29,7 @@ function ShopOptions() {
         <div className="flex flex-col items-start lg:gap-y-0.5">
           <h1 className="font-DanaDemi text-xl lg:text-2xl">ارسال رایگان</h1>
           <h2 className="text-gray-2 text-base lg:text-xl">
-            سفارشات بالای ۵ میلیون
+            سفارشات بالای 10 میلیون
           </h2>
         </div>
       </div>

@@ -53,7 +53,14 @@ const sumProducts = (products) => {
   //   acc + cur.quantity;
   // }, 0);
   const itemsCounter = products.length
-  const total = products.reduce((acc, cur) => acc + cur.price * cur.quantity , 0).toFixed(2);
+  const total = products.reduce((acc, cur) => {
+    if(!cur.discount.isAvailable){
+      return acc + cur.price * cur.quantity
+    }
+    else {
+      return acc + (cur.price - (cur.price * cur.discount.amount / 100) ) * cur.quantity
+    }
+  } , 0);
   return {itemsCounter , total}
 };
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { RotatingLines } from "react-loader-spinner";
@@ -28,16 +28,53 @@ import ProductCard from "../components/ProductCard";
 
 function ProductDetail() {
   const [imageSrc, setImageSrc] = useState(image);
-  const products = useProducts();
   const [value, setValue] = useState(1);
+  const [productColor, setProductColor] = useState("#B88E2F");
+  const [productSize, setProductSize] = useState("XS");
 
   const { id } = useParams();
-  const productDetail = useProductDetail(+id);
+
   const [state, dispatch] = useCart();
+  const products = useProducts();
+  const productDetail = useProductDetail(+id);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const handleActiveClassSize = () => {
+    const sizeButtons = document.querySelectorAll(".sizeButton")
+    sizeButtons.forEach(sizeButton => {
+      sizeButton.addEventListener('click' , (e) => {
+        sizeButtons.forEach(otherButtons => {
+          otherButtons.classList.remove("activeButton")
+        })
+        e.target.classList.add("activeButton")
+      })
+    })
+  }
+  const handleActiveColor = () => {
+    const sizeButtons = document.querySelectorAll(".colorButtons")
+    sizeButtons.forEach(sizeButton => {
+      sizeButton.addEventListener('click' , (e) => {
+        sizeButtons.forEach(otherButtons => {
+          otherButtons.classList.remove("activeColor")
+        })
+        e.target.classList.add("activeColor")
+      })
+    })
+  }
+
+  const productOrder = {
+    ...productDetail,
+    productColor,
+    productSize,
+  };
+
+  useEffect(() => {
+    handleActiveClassSize()
+    handleActiveColor()
+  }, []);
 
   if (!productDetail)
     return <RotatingLines strokeColor="#B88E2F" strokeWidth="1.5" />;
@@ -156,13 +193,22 @@ function ProductDetail() {
             <div className="product__main-size w-full flex flex-col items-start gap-y-6 lg:gap-y-3 mt-4">
               <h1 className="text-[#9F9F9F] text-xl lg:text-lg">سایز</h1>
               <div className="flex items-center gap-x-2.5 lg:gap-x-4 child:font-MorabaMedium child:w-10 child:h-10 child:px-3 child:py-1 child:bg-primary-4 child:rounded-md">
-                <button className="sizeButton hover:bg-primary-1 hover:text-white transition-all duration-150 delay-75">
+                <button
+                  onClick={(e) => setProductSize(e.target.innerText)}
+                  className="sizeButton hover:bg-primary-1 hover:text-white transition-all duration-150 delay-75"
+                >
                   L
                 </button>
-                <button className="sizeButton hover:bg-primary-1 hover:text-white transition-all duration-150 delay-75">
+                <button
+                  onClick={(e) => setProductSize(e.target.innerText)}
+                  className="sizeButton hover:bg-primary-1 hover:text-white transition-all duration-150 delay-75"
+                >
                   XL
                 </button>
-                <button className="sizeButton hover:bg-primary-1 hover:text-white transition-all duration-150 delay-75">
+                <button
+                  onClick={(e) => setProductSize(e.target.innerText)}
+                  className="sizeButton hover:bg-primary-1 hover:text-white transition-all duration-150 delay-75"
+                >
                   XS
                 </button>
               </div>
@@ -170,9 +216,18 @@ function ProductDetail() {
             <div className="product__main-color w-full flex flex-col items-start gap-y-6 lg:gap-y-3 mt-6">
               <h1 className="text-[#9F9F9F] text-xl lg:text-lg">رنگ</h1>
               <div className="flex items-center gap-x-2.5 lg:gap-x-4">
-                <span className="w-10 h-10 lg:w-[30px] lg:h-[30px] rounded-full bg-[#816DFA]"></span>
-                <span className="w-10 h-10 lg:w-[30px] lg:h-[30px] rounded-full bg-black"></span>
-                <span className="w-10 h-10 lg:w-[30px] lg:h-[30px] rounded-full bg-primary-1"></span>
+                <span
+                  onClick={(e) => setProductColor("#816DFA")}
+                  className="colorButtons w-10 h-10 lg:w-[30px] lg:h-[30px] rounded-full bg-[#816DFA]"
+                ></span>
+                <span
+                  onClick={(e) => setProductColor("#000000")}
+                  className="colorButtons w-10 h-10 lg:w-[30px] lg:h-[30px] rounded-full bg-black"
+                ></span>
+                <span
+                  onClick={(e) => setProductColor("#B88E2F")}
+                  className="colorButtons w-10 h-10 lg:w-[30px] lg:h-[30px] rounded-full bg-primary-1"
+                ></span>
               </div>
             </div>
             <div className="product__main-submit w-full flex items-center gap-x-1.5 lg:gap-x-4 mt-8">
@@ -195,7 +250,7 @@ function ProductDetail() {
               </div> */}
               <button
                 onClick={() =>
-                  dispatch({ type: "ADD_ITEM", payload: productDetail })
+                  dispatch({ type: "ADD_ITEM", payload: productOrder })
                 }
                 className="py-2.5 px-6 sm:py-3.5 sm:px-7 lg:py-4 lg:px-12 border-2 border-black rounded-xl"
               >
@@ -326,10 +381,16 @@ function ProductDetail() {
 
         <div className="product_tabPannel-images flex flex-wrap lg:flex-nowrap items-center justify-center gap-y-6 lg:gap-x-[29px]">
           <div className="bg-primary-4 lg:w-[605px] lg:h-[348px] rounded-xl">
-            <img src="../src/assets/images/ProductDetails/productDetail6.png" alt="tabPannelImage"/>
+            <img
+              src="../src/assets/images/ProductDetails/productDetail6.png"
+              alt="tabPannelImage"
+            />
           </div>
           <div className="bg-primary-4 lg:w-[605px] lg:h-[348px] rounded-xl">
-            <img src="../src/assets/images/ProductDetails/prodtctDetail7.png" alt="tabPannelImage"/>
+            <img
+              src="../src/assets/images/ProductDetails/prodtctDetail7.png"
+              alt="tabPannelImage"
+            />
           </div>
         </div>
       </section>

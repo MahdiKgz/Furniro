@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import ProductProvider from "./context/ProductContext";
 import ProductDetail from "./pages/ProductDetail";
 import CartProvider from "./context/CartContext";
+import SubmitOrderForm from "./components/SubmitOrderForm";
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function App() {
             <Route path="/shop/:id" element={<ProductDetail />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout" element={<Checkout />} >
+              <Route path="place-order" element={<SubmitOrderForm />} />
+            </Route>
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
