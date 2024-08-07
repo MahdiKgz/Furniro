@@ -25,6 +25,8 @@ import { useProductDetail, useProducts } from "../context/ProductContext";
 import { useCart } from "../context/CartContext";
 import { paginateItems } from "../helpers/funcs/shared";
 import ProductCard from "../components/ProductCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 function ProductDetail() {
   const [imageSrc, setImageSrc] = useState(image);
@@ -43,27 +45,27 @@ function ProductDetail() {
   };
 
   const handleActiveClassSize = () => {
-    const sizeButtons = document.querySelectorAll(".sizeButton")
-    sizeButtons.forEach(sizeButton => {
-      sizeButton.addEventListener('click' , (e) => {
-        sizeButtons.forEach(otherButtons => {
-          otherButtons.classList.remove("activeButton")
-        })
-        e.target.classList.add("activeButton")
-      })
-    })
-  }
+    const sizeButtons = document.querySelectorAll(".sizeButton");
+    sizeButtons.forEach((sizeButton) => {
+      sizeButton.addEventListener("click", (e) => {
+        sizeButtons.forEach((otherButtons) => {
+          otherButtons.classList.remove("activeButton");
+        });
+        e.target.classList.add("activeButton");
+      });
+    });
+  };
   const handleActiveColor = () => {
-    const sizeButtons = document.querySelectorAll(".colorButtons")
-    sizeButtons.forEach(sizeButton => {
-      sizeButton.addEventListener('click' , (e) => {
-        sizeButtons.forEach(otherButtons => {
-          otherButtons.classList.remove("activeColor")
-        })
-        e.target.classList.add("activeColor")
-      })
-    })
-  }
+    const sizeButtons = document.querySelectorAll(".colorButtons");
+    sizeButtons.forEach((sizeButton) => {
+      sizeButton.addEventListener("click", (e) => {
+        sizeButtons.forEach((otherButtons) => {
+          otherButtons.classList.remove("activeColor");
+        });
+        e.target.classList.add("activeColor");
+      });
+    });
+  };
 
   const productOrder = {
     ...productDetail,
@@ -72,8 +74,8 @@ function ProductDetail() {
   };
 
   useEffect(() => {
-    handleActiveClassSize()
-    handleActiveColor()
+    handleActiveClassSize();
+    handleActiveColor();
   }, []);
 
   if (!productDetail)
@@ -399,9 +401,28 @@ function ProductDetail() {
           محصولات مرتبط
         </h1>
         <div className="flex items-center justify-center flex-wrap gap-x-4 gap-y-6 lg:gap-x-8 lg:gap-y-10 mt-8 sm:mt-12 lg:mt-6 transition-all duration-200">
-          {products.slice(0, 4).map((pr) => (
-            <ProductCard key={pr.id} data={pr} />
+          <Swiper
+            className="max-w-[300px] sm:max-w-[500px] lg:max-w-[1400px]"
+            spaceBetween={36}
+            slidesPerView={4}
+            breakpoints={{
+              576: {
+                width: 576,
+                slidesPerView: 2,
+              },
+              768: {
+                width: 768,
+                slidesPerView: 2,
+              },
+            }}
+            loop
+          >
+          {products.slice(0, 8).map((pr) => (
+            <SwiperSlide className="">
+              <ProductCard key={pr.id} data={pr} />
+            </SwiperSlide>
           ))}
+          </Swiper> 
         </div>
       </section>
     </>

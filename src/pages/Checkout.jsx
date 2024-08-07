@@ -88,7 +88,7 @@ function Checkout() {
           </Link>
         </div>
       </div>
-      <div data-aos="fade-up" data-aos-duration="2000">{!!state.selectedItems.length && <Outlet />}</div>
+      <div>{!!state.selectedItems.length && <Outlet />}</div>
       <ShopOptions />
     </>
   );
