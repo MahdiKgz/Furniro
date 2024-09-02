@@ -53,7 +53,7 @@ function SubmitOrderForm() {
   };
 
   return (
-    <div className="container grid grid-cols-1 lg:grid-cols-2 gap-y-6 lg:gap-x-7 py-12 lg:py-24">
+    <div className="container h-full grid grid-cols-1 lg:grid-cols-2 gap-y-6 lg:gap-x-7 py-12 lg:py-24">
       <div
         data-aos="fade-down"
         data-aos-duration="1500"
@@ -179,7 +179,7 @@ function SubmitOrderForm() {
       <div
         data-aos="fade-down"
         data-aos-duration="1500"
-        className="payment-method h-fit flex flex-col items-stretch lg:w-[608px] lg:gap-y-[22px]"
+        className="payment-method lg:sticky lg:top-20 h-fit flex flex-col items-stretch lg:w-[608px] lg:gap-y-[22px]"
       >
         <div className="payment-method__header flex w-full items-center justify-between">
           <h1 className="font-MorabaMedium text-2xl">محصول</h1>

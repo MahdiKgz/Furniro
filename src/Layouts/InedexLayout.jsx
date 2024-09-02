@@ -41,7 +41,7 @@ function InedexLayout({ children }) {
   return (
     <>
       <Toaster />
-      <header className="bg-white flex justify-center items-center w-full md:h-25 py-6 px-4 sm:py-6 sm:px-3.5 md:py-6 md:px-4">
+      <header className="bg-white flex lg:sticky lg:top-0 lg:z-10 justify-center items-center w-full md:h-25 py-6 px-4 sm:py-6 sm:px-3.5 md:py-6 md:px-4">
         <div className="container flex items-center justify-between">
           <div className="flex items-center md:gap-x-2">
             <img className="header__main-logo" alt="main logo" src={icon} />
