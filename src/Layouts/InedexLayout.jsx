@@ -17,16 +17,20 @@ import icon from "../assets/icons/mainLogo.png";
 import toast, { Toaster } from "react-hot-toast";
 import { Badge } from "@mui/material";
 import { useCart } from "../context/CartContext";
+import { FaUser } from "react-icons/fa";
 
 function InedexLayout({ children }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [state , dispatch] = useCart();
+  const [state, dispatch] = useCart();
+
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     window.addEventListener("load", () => navigate("/"));
     AOS.init();
     handleMobileMenu();
+    setUserData(()=> JSON.parse(localStorage.getItem("userData")))
   }, []);
 
   const submitNewLetterHandler = async () => {
@@ -66,9 +70,16 @@ function InedexLayout({ children }) {
             </ul>
           </div>
           <div className="iconed-links hidden lg:flex items-center justify-between md:w-[250px]">
-            <Link title="ورود" className="header_link" to="/login">
-              <TbUserExclamation size={23} />
-            </Link>
+            {!userData ? (
+              <Link title="ورود" className="header_link" to="/login">
+                <TbUserExclamation size={23} />
+              </Link>
+            ) : (
+              <Link to="/pannel" className="header_link" title="پنل کاربری" >
+                <FaUser size={23}/>
+              </Link>
+            )}
+
             <button>
               <ImSearch size={23} />
             </button>
@@ -142,15 +153,17 @@ function InedexLayout({ children }) {
           </div>
         </div>
         <div className="navigation-bar flex lg:hidden justify-evenly items-center fixed bottom-2 w-[90%] mx-auto bg-gray-100 py-2.5 child:w-[65px] child:transition-all child:duration-300 rounded-xl z-10">
-          <Link
-            to="/login"
-            className="header_link flex flex-col justify-center items-center px-5 py-3.5 rounded-full"
-          >
-            <TbUserExclamation size={23} />
-            <Link title="ورود" to="/login" className="text-xs sm:text-sm">
-              ورود
-            </Link>
-          </Link>
+          {!userData ? (
+              <Link title="ورود" className="header_link" to="/login">
+                <TbUserExclamation size={23} />
+                <span>ورود</span>
+              </Link>
+            ) : (
+              <Link to="/pannel" className="header_link flex flex-col gap-y-1.5 text-xs sm:text-sm justify-center items-center" title="پنل کاربری" >
+                <FaUser size={23}/>
+                <span>پنل کاربری</span>
+              </Link>
+            )}
           <Link className="flex flex-col justify-center items-center px-5 py-3.5  rounded-full">
             <ImSearch size={23} />
             <Link className="text-xs sm:text-sm">جستجو</Link>
@@ -183,8 +196,8 @@ function InedexLayout({ children }) {
             className="header_link flex flex-col justify-center items-center px-5 py-3.5  rounded-full"
           >
             <Badge badgeContent={state.itemsCounter} color="primary">
-                <MdOutlineShoppingCart size={23} />
-              </Badge>
+              <MdOutlineShoppingCart size={23} />
+            </Badge>
             <Link title="سبد خرید" to="/checkout" className="text-xs">
               سبدخرید
             </Link>

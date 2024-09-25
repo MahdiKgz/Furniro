@@ -400,10 +400,10 @@ function ProductDetail() {
         <h1 className="font-MorabaBold mt-6 sm:mt-5 lg:mt-10 text-2xl sm:text-3xl lg:text-4xl">
           محصولات مرتبط
         </h1>
-        <div className="flex items-center justify-center flex-wrap gap-x-4 gap-y-6 lg:gap-x-8 lg:gap-y-10 mt-8 sm:mt-12 lg:mt-6 transition-all duration-200">
+        <div className="flex items-center justify-center flex-wrap  mt-8 sm:mt-12 lg:mt-6 transition-all duration-200">
           <Swiper
             className="max-w-[300px] sm:max-w-[500px] lg:max-w-[1400px]"
-            spaceBetween={36}
+            spaceBetween={0}
             slidesPerView={4}
             breakpoints={{
               576: {
