@@ -34,6 +34,7 @@ function ProductDetail() {
   const [productColor, setProductColor] = useState("#B88E2F");
   const [productSize, setProductSize] = useState("XS");
 
+  const [relatedProducts , setRelatedProducts] = useState([])
   const { id } = useParams();
 
   const [state, dispatch] = useCart();
@@ -67,6 +68,10 @@ function ProductDetail() {
     });
   };
 
+  const filterProductsByCategory = ()=>{
+    const filteredProduct = products.filter(item => item.category === productDetail.category)
+    setRelatedProducts(()=>filteredProduct)
+  }
   const productOrder = {
     ...productDetail,
     productColor,
@@ -76,6 +81,7 @@ function ProductDetail() {
   useEffect(() => {
     handleActiveClassSize();
     handleActiveColor();
+    filterProductsByCategory()
   }, []);
 
   if (!productDetail)
@@ -402,22 +408,39 @@ function ProductDetail() {
         </h1>
         <div className="flex items-center justify-center flex-wrap  mt-8 sm:mt-12 lg:mt-6 transition-all duration-200">
           <Swiper
-            className="max-w-[300px] sm:max-w-[500px] lg:max-w-[1400px]"
+            className="max-w-[280px] sm:max-w-[700px] lg:max-w-[1400px]"
             spaceBetween={0}
             slidesPerView={4}
             breakpoints={{
+              0:{
+                width : 300,
+                slidesPerView : 2,
+                spaceBetween : 100
+              },
               576: {
                 width: 576,
                 slidesPerView: 2,
+                spaceBetween : 150
               },
               768: {
                 width: 768,
-                slidesPerView: 2,
+                slidesPerView: 3.5,
+                spaceBetween:150
+              },
+              992: {
+                width: 992,
+                slidesPerView: 3.5,
+                spaceBetween : 40
+              },
+              1024: {
+                width: 1024,
+                slidesPerView: 3.5,
+                spaceBetween : 40
               },
             }}
             loop
           >
-          {products.slice(0, 8).map((pr) => (
+          {relatedProducts.map((pr) => (
             <SwiperSlide className="">
               <ProductCard key={pr.id} data={pr} />
             </SwiperSlide>

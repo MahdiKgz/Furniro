@@ -30,7 +30,7 @@ function Login() {
   };
 
   const checkUserLogin = () => {
-    const userData = JSON.parse(localStorage.getItem("user-login-data"))
+    const userData = JSON.parse(localStorage.getItem("userData"))
     if (userData) navigate("/")
   }
   return (
