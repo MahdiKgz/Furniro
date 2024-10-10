@@ -17,14 +17,14 @@ function Login() {
     password
   }
   const loginHanlder = () => {
-    api.post("/login", userData)
+    api.post("/register", userData)
     .then(response => {
      toast.success("با موفقیت وارد شدید");
      localStorage.setItem("accessToken" , JSON.stringify(response.accessToken))
      localStorage.setItem("userData" , JSON.stringify(response.user))
 
      setTimeout(() => {
-      navigate("/")
+      location.reload()
      } , 2000)
     })
   };
