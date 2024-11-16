@@ -41,21 +41,23 @@ function Login() {
         </h1>
         <div className="login-form flex flex-col items-start lg:gap-y-6 gap-y-5 mt-8 lg:mt-10 child:w-full">
           <div className="login-form__input flex flex-col gap-y-3.5">
-            <label>نام کاربری</label>
+            <label htmlFor="username">نام کاربری</label>
             <input
               onInput={(e) => setUserName(e.target.value)}
               type="text"
               className="px-6 py-3.5 border-b-2 border-b-neutral-400 focus:border-b-primary-1 outline-none transition-all duration-200 rounded-lg"
               placeholder="نام کاربری"
+              id="username"
             />
           </div>
           <div className="login-form__input flex flex-col gap-y-3.5">
-            <label>رمز عبور</label>
+            <label htmlFor="password">رمز عبور</label>
             <input
               onInput={(e) => setPassword(e.target.value)}
               type="password"
               className="px-6 py-3.5 border-b-2 border-b-neutral-400 focus:border-b-primary-1 outline-none transition-all duration-200 rounded-lg"
               placeholder="رمز عبور"
+              id="password"
             />
           </div>
           <div className="rememberMe flex items-center gap-x-2.5 mt-3">
